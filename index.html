@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+           
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background-image: url("https://img.freepik.com/free-vector/modern-abstract-background_1048-1003.jpg?t=st=1744264919~exp=1744268519~hmac=1157623cd9b0ae1463f653697fa086fbccbfeba8d56c7daf1011154de5006bb4&w=740");
+            height: 100vh;
+            background-position: center;
+            background-size: cover;
+        }
+
+        #left,
+        #right {
+            width: 400px;
+            height: 500px;
+            border: dotted;
+          
+        }
+
+        #left,
+        #right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-direction: column;
+            text-transform: uppercase;
+        }
+
+        .items {
+
+            background-color: rgba(245, 159, 0, 0.973);
+            border-radius: 20px;
+            list-style: none;
+            padding: 30px 50px;
+            cursor: grab;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="left" draggable="true">
+            <div draggable="true" class="items">Item 1</div>
+            <div draggable="true" class="items">Item 2</div>
+            <div draggable="true" class="items">Item 3</div>
+            <div draggable="true" class="items">Item 4</div>
+           
+        </div>
+        <div id="right" draggable="true">
+        </div>
+        <script>
+            const items = document.getElementsByClassName("items");
+            console.log(items);
+            const rightBox = document.getElementById("right");
+            const leftBox = document.getElementById("left");
+            let Selected = null;
+
+            for (let list of items) {
+       
+       list.addEventListener("dragstart",function (e)  {
+         Selected = e.target;
+
+         rightBox.addEventListener("dragover",function (e) {
+         e.preventDefault();
+       });
+       rightBox.addEventListener("drop",function (e){
+       
+          rightBox.appendChild(Selected);
+        });
+
+        leftBox.addEventListener("dragover",function (e)  {
+          e.preventDefault();
+        });
+
+        leftBox.addEventListener("drop", function (e) {
+          leftBox.appendChild(Selected);
+        });
+    });
+}
+        </script>
+</body>
+
+</html>
